@@ -6,8 +6,6 @@ function generatePassword() {
     var specialChars = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
     var charSet = '';
     var password = '';
-  
-   
     var passwordLength = prompt("Enter the length of the password (between 8 and 128 characters):");
   
     
@@ -15,12 +13,32 @@ function generatePassword() {
       alert("Password length must be between 8 and 128 characters.");
     }
   
-    var includeLowercase = confirm("Include lowercase characters?");
-    var includeUppercase = confirm("Include uppercase characters?");
-    var includeNumeric = confirm("Include numeric characters?");
-    var includeSpecial = confirm("Include special characters?");
+    var lowercase = confirm("Include lowercase characters?");
+    var uppercase = confirm("Include uppercase characters?");
+    var numeric = confirm("Include numeric characters?");
+    var special = confirm("Include special characters?");
 
+    if (lowercase) {
+        charSet += lowercaseChars;
+    }
+    if (uppercase) {
+        charSet += uppercaseChars;
+    }
+    if (numeric) {
+        charSet += numericChars;
+    }
+    if (special) {
+        charSet += specialChars;
+    }
   
+
+    for (let i = 0; i < passwordLength; i++) {
+        var randomIndex = Math.floor(Math.random() * charSet.length);
+        password += charSet.charAt(randomIndex);
+      }
+    
+      return password;
+
   }
   
 
